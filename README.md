@@ -27,8 +27,6 @@ Il codice è suddiviso in diverse sezioni:
 
 ## Future implementazioni
 
-- Inserimento delle bombe 
-- Logica per determinare la vincita o la perdita del giocatore
-- Logica di punteggio incrementale ogni volta che l'utente non colpisce la bomba
 - Miglioramenti grafici come per esempio l'aggiunta di un icona della bomba quando si clicca sulla casella corrispondente
+- Timer: un conto alla rovescia, allo scadere del quale il gioco termina
 
