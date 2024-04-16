@@ -14,6 +14,8 @@ btnPlayElement.addEventListener('click', () => {
     gridElement.innerHTML = ''
     // imposto array vuoto in modo tale che ad ogni click si generano numeri diversi
     bombe = []
+    // reimposto la varibile gameOver a false cosi che ad ogni click su gioca lo status di gioco si resetta => il giocatore può ricominciare
+    gameOver = false
     const selectValue = selectElement.value
     if (selectValue == 0) {
         easyGameMode()
