@@ -2,6 +2,8 @@
 
 Questa è versione semplificata del gioco Campo Minato implementato utilizzando HTML, CSS e JavaScript. Il gioco offre tre diversi livelli di difficoltà: facile, intermedio e difficile. La dimensione della griglia varia in base al livello selezionato.
 
+![](img/campo-minato.png)
+
 ## Livelli di difficoltà
 
 - Facile: Una griglia di 10x10 celle.
@@ -29,3 +31,4 @@ Il codice è suddiviso in diverse sezioni:
 - Logica per determinare la vincita o la perdita del giocatore
 - Logica di punteggio incrementale ogni volta che l'utente non colpisce la bomba
 - Miglioramenti grafici come per esempio l'aggiunta di un icona della bomba quando si clicca sulla casella corrispondente
+
