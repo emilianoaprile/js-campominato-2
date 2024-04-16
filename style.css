@@ -93,7 +93,8 @@ body {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
+    cursor: pointer; 
 }
 
 .grid-cell-81 {
@@ -102,7 +103,9 @@ body {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;  
+    cursor: pointer; 
+
 }
 
 .grid-cell-49 {
@@ -111,9 +114,19 @@ body {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center; 
+    cursor: pointer; 
+
 }
 
 .bg-blue {
     background-color: aqua;
+}
+
+.bg-red {
+    background-color: crimson;
+}
+
+.color-white {
+    color: white;
 }
