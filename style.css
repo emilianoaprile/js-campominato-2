@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.container {
+    max-width: 530px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgba(173, 255, 47, 0.7);
+}
+
+.buttons-bar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid crimson;
+    margin-top: 10px;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.game-title {
+    text-transform: uppercase;
+    color: crimson;
+    font-size: 40px;
+}
+
+.game-icon {
+    font-size: 32px;
+    display: inline-block;
+}
+
+.btn-play {
+    width: 150px;
+    height: 30px;
+    text-transform: uppercase;
+    background-color: greenyellow;
+    border-radius: 20px;
+}
+
+.btn-reset {
+    width: 150px;
+    height: 30px;
+    text-transform: uppercase;
+    background-color: rgb(47, 220, 255);
+    border-radius: 20px;
+}
+.difficulty-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#game-difficulty {
+    width: 150px;
+    height: 30px;
+    text-transform: uppercase;
+    background-color: crimson;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.grid-cell-100 {
+    border: 1px solid black;
+    flex-basis: calc(100% / 10);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.grid-cell-81 {
+    border: 1px solid black;
+    flex-basis: calc(100% / 9);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.grid-cell-49 {
+    border: 1px solid black;
+    flex-basis: calc(100% / 7);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.bg-blue {
+    background-color: aqua;
+}
