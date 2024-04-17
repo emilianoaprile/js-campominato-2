@@ -128,9 +128,3 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
         })
     }
 }
-
-
-
-
-
-

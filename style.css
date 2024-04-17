@@ -14,12 +14,9 @@ html {
 }
 
 .wrapper {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
     padding-top: 20px;
     background-color: #4A7C59;
+    padding-bottom: 20px;
 }
 .buttons-bar {
     display: flex;
