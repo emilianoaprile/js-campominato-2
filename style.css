@@ -8,6 +8,11 @@ html {
     font-family: 'Pixelify Sans', sans-serif;
 }
 
+body {
+    background-color: #4A7C59;
+
+}
+
 .container {
     max-width: 700px;
     margin: 0 auto;
@@ -15,8 +20,6 @@ html {
 
 .wrapper {
     padding-top: 20px;
-    background-color: #4A7C59;
-    padding-bottom: 20px;
 }
 .buttons-bar {
     display: flex;
@@ -111,7 +114,7 @@ html {
     text-align: center;
     cursor: pointer;
     font-family: 'Pixelify Sans', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     /* padding: 20px 10px; */
 }
 
