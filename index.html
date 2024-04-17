@@ -16,44 +16,61 @@
 </head>
 
 <body>
+    <div class="wrapper">
 
-    <div class="container">
-        <header class="buttons-bar">
-            <div class="title-section">
-                <!-- <div class="game-icon">
-                    <i class="fa-solid fa-bomb"></i>
-                </div> -->
+        <section class="settings">
+            <div class="container">
+                <div class="buttons-bar">
+                
+                    <div class="title">
+                        <div class="game-icon">
+                            <i class="fa-solid fa-bomb"></i>
+                        </div>
 
-                <h1 class="game-title">campominato</h1>
+                        <h1 class="game-title">campominato</h1>
 
-                <!-- <div class="game-icon">
-                    <i class="fa-solid fa-bomb"></i>
-                </div> -->
+                        <div class="game-icon">
+                            <i class="fa-solid fa-bomb"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="options">
+                        <div class="difficulty-options">
+                            <label for="difficulty">SCEGLI LA DIFFICOLTÀ</label>
+                            <select name="difficulty" id="game-difficulty">
+                                <option value="0">Facile</option>
+                                <option value="1">Intermedio</option>
+                                <option value="2">Difficile</option>
+                            </select>
+                        </div>
+
+                        <div class="play">
+                            <button class="btn-play">Play</button>
+                        </div>
+
+                        <div class="score">
+                            <p>PUNTEGGIO &downarrow;</p>
+                            <p class="punteggio" id="total-score"></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div class="difficulty-options">
-                <label for="difficulty">scegli la difficoltà</label>
-                <select name="difficulty" id="game-difficulty">
-                    <option value="0">Facile</option>
-                    <option value="1">Intermedio</option>
-                    <option value="2">Difficile</option>
-                </select>
+        <section class="field-section">
+            <div class="container">
+                <div class="grid">
+                    <!-- <div class="grid-cell">1</div> -->
+
+
+                </div>
             </div>
-            <button class="btn-play">Gioca</button>
-            <p>PUNTEGGIO &downarrow;</p>
-            <p class="punteggio" id="total-score"></p>
-        </header>
+        </section>
+
     </div>
 
-    <section class="field-section">
-        <div class="container">
-            <div class="grid">
-                <!-- <div class="grid-cell">1</div> -->
-
-
-            </div>
-        </div>
-    </section>
 
 
 

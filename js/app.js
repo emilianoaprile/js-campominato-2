@@ -4,7 +4,8 @@ const gridElement = document.querySelector('.grid')
 const btnPlayElement = document.querySelector('.btn-play')
 const selectElement = document.getElementById('game-difficulty')
 const totalScoreElement = document.getElementById('total-score')
-console.log(gridElement)
+const iconElement = document.querySelector('.game-icon')
+console.dir(iconElement)
 
 let bombe = []
 let totalCellsClicked = []
@@ -25,17 +26,17 @@ btnPlayElement.addEventListener('click', () => {
     const selectValue = selectElement.value
 
     if (selectValue == 0) {
-        easyGameMode()
+        gameMode(100, 100)
         generateBombs(1, 100, bombe, 10)
     }
 
     if (selectValue == 1) {
-        intermediateGameMode()
+        gameMode(81, 81)
         generateBombs(1, 81, bombe, 9)
     }
 
     if (selectValue == 2) {
-        difficultGameMode()
+        gameMode(49, 49)
         generateBombs(1, 49, bombe, 7)
     }
     console.log(bombe)
@@ -62,54 +63,21 @@ function getRandomIntInclusive(min, max) {
 }
 
 // MODALITÀ DI GIOCO FACILE
-function easyGameMode() {
+function gameMode(difficulty, numOfCells) {
     // aggiungo le 100 celle al gridElement
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < numOfCells; i++) {
         const num = i + 1
 
         const divElement = document.createElement('div')
-        divElement.classList.add('grid-cell-100')
+        divElement.classList.add('grid-cell')
+        divElement.classList.add(`grid-cell-${difficulty}`)
         gridElement.append(divElement)
-        divElement.innerHTML = num
+        // divElement.innerHTML = num
     }
     // evento click per ogni cella per cambiarle il bg 
-    const cellDOMElements = document.querySelectorAll('.grid-cell-100')
+    const cellDOMElements = document.querySelectorAll(`.grid-cell-${difficulty}`)
     addClickEventOnCells(cellDOMElements, 10)
     console.log(cellDOMElements)
-
-}
-
-// MODALITÀ DI GIOCO INTERMEDIA
-function intermediateGameMode() {
-    // aggiungo le 81 celle al gridElement
-    for (let i = 0; i < 81; i++) {
-        const num = i + 1
-
-        const divElement = document.createElement('div')
-        divElement.classList.add('grid-cell-81')
-        gridElement.append(divElement)
-        divElement.innerHTML = num
-    }
-    // evento click per ogni cella per cambiarle il bg 
-    const cellDOMElements = document.querySelectorAll('.grid-cell-81')
-    addClickEventOnCells(cellDOMElements, 9)
-
-}
-
-// MODALITÀ DI GIOCO DIFFICILE
-function difficultGameMode() {
-    // aggiungo le 49 celle al gridElement
-    for (let i = 0; i < 49; i++) {
-        const num = i + 1
-
-        const divElement = document.createElement('div')
-        divElement.classList.add('grid-cell-49')
-        gridElement.append(divElement)
-        divElement.innerHTML = num
-    }
-    // evento click per ogni cella per cambiarle il bg 
-    const cellDOMElements = document.querySelectorAll('.grid-cell-49')
-    addClickEventOnCells(cellDOMElements, 7)
 
 }
 
@@ -126,18 +94,25 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
 
             if (bombe.includes(cellNumber)) {
                 gameOver = true
-                totalScoreElement.innerHTML = `HAI PERSO! IL PUNTEGGIO TOTALE È: ${punteggio}`
+                totalScoreElement.innerHTML = `HAI PERSO!`
                 currentCell.classList.add('bg-red')
+                currentCell.classList.add('color')
+
+                currentCell.innerHTML = iconElement.innerHTML
 
                 // ciclo l'array di bombe per assegnare ad ogni elemento dell'array bombe un DOMElement => posso assegnare la classe bg-red a tutte le bombe corrispondenti
                 for (let k = 0; k < bombe.length; k++) {
                     const currentBomb = bombe[k]
                     const bombCells = DOMElement[currentBomb - 1]
                     bombCells.classList.add('bg-red')
+
+                    bombCells.innerHTML = iconElement.innerHTML
+
                 }
 
             } else {
-                currentCell.classList.add('bg-blue')
+                currentCell.classList.add('bg-cell')
+                currentCell.innerHTML = '<i class="fa-solid fa-xmark"></i>'
                 if (!totalCellsClicked.includes(cellNumber)) {
                     totalCellsClicked.push(cellNumber)
                     punteggio++
