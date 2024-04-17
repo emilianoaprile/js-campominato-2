@@ -14,11 +14,9 @@ let punteggio = 0
 // evento play - INIZIO GIOCO
 btnPlayElement.addEventListener('click', () => {
 
-    // imposto innerHTML 0 = '' per non duplicare le celle ad ogni click
+    // variabili che devono resettarsi nel momento in cui il giocatore inizia un altra partita
     gridElement.innerHTML = ''
-    // imposto array vuoto in modo tale che ad ogni click si generano numeri diversi
     bombe = []
-    // reimposto la varibile gameOver a false cosi che ad ogni click su gioca lo status di gioco si resetta => il giocatore può ricominciare
     gameOver = false
     punteggio = 0
     totalScoreElement.innerHTML = ''
@@ -40,8 +38,6 @@ btnPlayElement.addEventListener('click', () => {
         difficultGameMode()
         generateBombs(1, 49, bombe, 7)
     }
-
-    
     console.log(bombe)
 })
 
@@ -49,7 +45,7 @@ btnPlayElement.addEventListener('click', () => {
 
 // GENERARE ARRAY DI BOMBE
 function generateBombs(min, max, array, numOfBombs) {
-    while (array.length < numOfBombs ) {
+    while (array.length < numOfBombs) {
         const currentBomb = getRandomIntInclusive(min, max)
         if (!array.includes(currentBomb, array)) {
             array.push(currentBomb)
@@ -79,7 +75,7 @@ function easyGameMode() {
     // evento click per ogni cella per cambiarle il bg 
     const cellDOMElements = document.querySelectorAll('.grid-cell-100')
     addClickEventOnCells(cellDOMElements, 10)
-    console.log(totalCellsClicked) 
+    console.log(cellDOMElements)
 
 }
 
@@ -97,7 +93,6 @@ function intermediateGameMode() {
     // evento click per ogni cella per cambiarle il bg 
     const cellDOMElements = document.querySelectorAll('.grid-cell-81')
     addClickEventOnCells(cellDOMElements, 9)
-    console.log(totalCellsClicked) 
 
 }
 
@@ -115,8 +110,7 @@ function difficultGameMode() {
     // evento click per ogni cella per cambiarle il bg 
     const cellDOMElements = document.querySelectorAll('.grid-cell-49')
     addClickEventOnCells(cellDOMElements, 7)
-    console.log(totalCellsClicked) 
-    
+
 }
 
 // EVENTO CLICK PER OGNI CELLA + CONTROLLO SE SCHIACCIA UNA BOMBA + PUNTEGGIO
@@ -124,37 +118,41 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
     for (let i = 0; i < DOMElement.length; i++) {
         const cellNumber = i + 1
         const currentCell = DOMElement[i]
+        // console.log(currentCell, cellNumber)
 
         // evento click per ogni cella
         currentCell.addEventListener('click', () => {
-            if (gameOver) return;
+            if (gameOver) return
 
             if (bombe.includes(cellNumber)) {
-                currentCell.classList.add('bg-red');
-                currentCell.classList.add('color-white');
-                gameOver = true;
+                gameOver = true
                 totalScoreElement.innerHTML = `HAI PERSO! IL PUNTEGGIO TOTALE È: ${punteggio}`
-            } else {
-                currentCell.classList.add('bg-blue');
-                punteggio++
-                totalScoreElement.innerHTML = punteggio
-                totalCellsClicked.push(cellNumber)
-            }
-            console.log(`Hai cliccato sulla cella numero: ${cellNumber}`);
-            console.log(totalCellsClicked)
+                currentCell.classList.add('bg-red')
 
-// TODO: FARE CONTROLLO SUL PUNTEGGIO, ATTUALEMENTE INCREMENTA IL PUNTEGGIO ANCHE SE L'UTENTE CLICCA PIÙ VOLTE LA STESSA CASELLA
+                // ciclo l'array di bombe per assegnare ad ogni elemento dell'array bombe un DOMElement => posso assegnare la classe bg-red a tutte le bombe corrispondenti
+                for (let k = 0; k < bombe.length; k++) {
+                    const currentBomb = bombe[k]
+                    const bombCells = DOMElement[currentBomb - 1]
+                    bombCells.classList.add('bg-red')
+                }
+
+            } else {
+                currentCell.classList.add('bg-blue')
+                if (!totalCellsClicked.includes(cellNumber)) {
+                    totalCellsClicked.push(cellNumber)
+                    punteggio++
+                    totalScoreElement.innerHTML = punteggio
+                }
+            }
 
             // logica per la vincita nel caso in cui vengano cliccate tutte le celle tranne le bombe
             if (DOMElement.length - totalCellsClicked.length === numOfBombs) {
-                console.log('hai vinto')
+                totalScoreElement.innerHTML = `HAI VINTO !`
                 gameOver = true
             }
-        
         })
     }
 }
-
 
 
 
