@@ -101,6 +101,7 @@ body {
     flex-basis: 30%;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 #game-difficulty {
@@ -163,6 +164,6 @@ body {
 }
 
 .score .punteggio {
-    font-size: 25px;
+    font-size: 30px;
     color: rgb(189, 0, 0);
 }
