@@ -72,12 +72,25 @@ function gameMode(difficulty, numOfCells) {
         divElement.classList.add('grid-cell')
         divElement.classList.add(`grid-cell-${difficulty}`)
         gridElement.append(divElement)
-        // divElement.innerHTML = num
+        divElement.innerHTML = num
     }
     // evento click per ogni cella per cambiarle il bg 
     const cellDOMElements = document.querySelectorAll(`.grid-cell-${difficulty}`)
-    addClickEventOnCells(cellDOMElements, 10)
-    console.log(cellDOMElements)
+    if (numOfCells === 100) {
+        addClickEventOnCells(cellDOMElements, 10)
+        console.log(cellDOMElements)
+    }
+
+    if (numOfCells === 81) {
+        addClickEventOnCells(cellDOMElements, 9)
+        console.log(cellDOMElements)
+    }
+
+    if (numOfCells === 49) {
+        addClickEventOnCells(cellDOMElements, 7)
+        console.log(cellDOMElements)
+    }
+
 
 }
 
