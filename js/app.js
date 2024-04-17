@@ -5,17 +5,19 @@ const btnPlayElement = document.querySelector('.btn-play')
 const selectElement = document.getElementById('game-difficulty')
 const totalScoreElement = document.getElementById('total-score')
 const iconElement = document.querySelector('.game-icon')
-console.dir(iconElement)
+
 
 let bombe = []
 let totalCellsClicked = []
 let gameOver = false
 let punteggio = 0
+gridElement.classList.add('d-none')
 
 // evento play - INIZIO GIOCO
 btnPlayElement.addEventListener('click', () => {
 
     // variabili che devono resettarsi nel momento in cui il giocatore inizia un altra partita
+    gridElement.classList.remove('d-none')
     gridElement.innerHTML = ''
     bombe = []
     gameOver = false
@@ -72,7 +74,7 @@ function gameMode(difficulty, numOfCells) {
         divElement.classList.add('grid-cell')
         divElement.classList.add(`grid-cell-${difficulty}`)
         gridElement.append(divElement)
-        divElement.innerHTML = num
+        // divElement.innerHTML = num
     }
     // evento click per ogni cella per cambiarle il bg 
     const cellDOMElements = document.querySelectorAll(`.grid-cell-${difficulty}`)
@@ -135,7 +137,7 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
 
             // logica per la vincita nel caso in cui vengano cliccate tutte le celle tranne le bombe
             if (DOMElement.length - totalCellsClicked.length === numOfBombs) {
-                totalScoreElement.innerHTML = `HAI VINTO !`
+                totalScoreElement.innerHTML = `HAI VINTO!`
                 gameOver = true
             }
         })
