@@ -4,6 +4,7 @@ const gridElement = document.querySelector('.grid')
 const btnPlayElement = document.querySelector('.btn-play')
 const selectElement = document.getElementById('game-difficulty')
 const totalScoreElement = document.getElementById('total-score')
+const messageElement = document.getElementById('message')
 const iconElement = document.querySelector('.game-icon')
 
 
@@ -23,6 +24,7 @@ btnPlayElement.addEventListener('click', () => {
     gameOver = false
     punteggio = 0
     totalScoreElement.innerHTML = ''
+    messageElement.innerHTML = ''
     totalCellsClicked = []
 
     const selectValue = selectElement.value
@@ -41,7 +43,6 @@ btnPlayElement.addEventListener('click', () => {
         gameMode(49, 49)
         generateBombs(1, 49, bombe, 7)
     }
-    console.log(bombe)
 })
 
 // ------- FUNZIONI -------
@@ -80,17 +81,14 @@ function gameMode(difficulty, numOfCells) {
     const cellDOMElements = document.querySelectorAll(`.grid-cell-${difficulty}`)
     if (numOfCells === 100) {
         addClickEventOnCells(cellDOMElements, 10)
-        console.log(cellDOMElements)
     }
 
     if (numOfCells === 81) {
         addClickEventOnCells(cellDOMElements, 9)
-        console.log(cellDOMElements)
     }
 
     if (numOfCells === 49) {
         addClickEventOnCells(cellDOMElements, 7)
-        console.log(cellDOMElements)
     }
 
 
@@ -104,16 +102,15 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
         // console.log(currentCell, cellNumber)
 
         // evento click per ogni cella
-        currentCell.addEventListener('click', () => {
+        currentCell.addEventListener('click', function() {
             if (gameOver) return
 
             if (bombe.includes(cellNumber)) {
                 gameOver = true
-                totalScoreElement.innerHTML = `HAI PERSO!`
-                currentCell.classList.add('bg-red')
-                currentCell.classList.add('color')
-
-                currentCell.innerHTML = iconElement.innerHTML
+                totalScoreElement.innerHTML = punteggio
+                messageElement.innerHTML = 'HAI PERSO!'
+                this.classList.add('bg-red')
+                this.classList.add('color')
 
                 // ciclo l'array di bombe per assegnare ad ogni elemento dell'array bombe un DOMElement => posso assegnare la classe bg-red a tutte le bombe corrispondenti
                 for (let k = 0; k < bombe.length; k++) {
@@ -122,12 +119,13 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
                     bombCells.classList.add('bg-red')
 
                     bombCells.innerHTML = iconElement.innerHTML
+                    this.innerHTML = '<i class="fa-solid fa-land-mine-on"></i>'
 
                 }
 
             } else {
-                currentCell.classList.add('bg-cell')
-                currentCell.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+                this.classList.add('bg-cell')
+                this.innerHTML = '<i class="fa-solid fa-xmark"></i>'
                 if (!totalCellsClicked.includes(cellNumber)) {
                     totalCellsClicked.push(cellNumber)
                     punteggio++
@@ -137,7 +135,8 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
 
             // logica per la vincita nel caso in cui vengano cliccate tutte le celle tranne le bombe
             if (DOMElement.length - totalCellsClicked.length === numOfBombs) {
-                totalScoreElement.innerHTML = `HAI VINTO!`
+                totalScoreElement.innerHTML = punteggio
+                messageElement.innerHTML = 'HAI VINTO'
                 gameOver = true
             }
         })
