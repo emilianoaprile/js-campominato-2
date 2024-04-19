@@ -5,8 +5,6 @@ const btnPlayElement = document.querySelector('.btn-play')
 const selectElement = document.getElementById('game-difficulty')
 const totalScoreElement = document.getElementById('total-score')
 const messageElement = document.getElementById('message')
-const iconElement = document.querySelector('.game-icon')
-
 
 let bombe = []
 let totalCellsClicked = []
@@ -58,14 +56,14 @@ function generateBombs(min, max, array, numOfBombs) {
 
 }
 
-// GENERARE NUMERI CASUALI
+// GENERARE NUMERI CASUALI PER LE BOMBE
 function getRandomIntInclusive(min, max) {
     const minCeiled = Math.ceil(min)
     const maxFloored = Math.floor(max)
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled)
 }
 
-// MODALITÀ DI GIOCO FACILE
+// MODALITÀ DI GIOCO
 function gameMode(difficulty, numOfCells) {
     // aggiungo le 100 celle al gridElement
     for (let i = 0; i < numOfCells; i++) {
@@ -75,9 +73,9 @@ function gameMode(difficulty, numOfCells) {
         divElement.classList.add('grid-cell')
         divElement.classList.add(`grid-cell-${difficulty}`)
         gridElement.append(divElement)
-        // divElement.innerHTML = num
     }
-    // evento click per ogni cella per cambiarle il bg 
+
+    // recupero le celle create e in base al numero di celle determino il numero di bombe in modo che la logica di vittoria funzioni
     const cellDOMElements = document.querySelectorAll(`.grid-cell-${difficulty}`)
     if (numOfCells === 100) {
         addClickEventOnCells(cellDOMElements, 10)
@@ -90,16 +88,15 @@ function gameMode(difficulty, numOfCells) {
     if (numOfCells === 49) {
         addClickEventOnCells(cellDOMElements, 7)
     }
-
-
 }
 
-// EVENTO CLICK PER OGNI CELLA + CONTROLLO SE SCHIACCIA UNA BOMBA + PUNTEGGIO
+// CONTROLLO SE SCHIACCIA UNA BOMBA + PUNTEGGIO + LOSE / WIN
 function addClickEventOnCells(DOMElement, numOfBombs) {
+
+    // ciclo tutte le celle del DOM => posso aggiungere ad ognuna un evento click
     for (let i = 0; i < DOMElement.length; i++) {
         const cellNumber = i + 1
         const currentCell = DOMElement[i]
-        // console.log(currentCell, cellNumber)
 
         // evento click per ogni cella
         currentCell.addEventListener('click', function() {
@@ -112,15 +109,13 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
                 this.classList.add('bg-red')
                 this.classList.add('color')
 
-                // ciclo l'array di bombe per assegnare ad ogni elemento dell'array bombe un DOMElement => posso assegnare la classe bg-red a tutte le bombe corrispondenti
+                // ciclo l'array di bombe (che sono solo dei numeri random) per assegnare ad ogni elemento dell'array bombe un oggetto del DOM corrispondente => posso accedervi e modificarne le proprietà
                 for (let k = 0; k < bombe.length; k++) {
                     const currentBomb = bombe[k]
                     const bombCells = DOMElement[currentBomb - 1]
                     bombCells.classList.add('bg-red')
-
-                    bombCells.innerHTML = iconElement.innerHTML
+                    bombCells.innerHTML = '<i class="fa-solid fa-bomb"></i>'
                     this.innerHTML = '<i class="fa-solid fa-land-mine-on"></i>'
-
                 }
 
             } else {
