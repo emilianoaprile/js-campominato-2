@@ -99,7 +99,7 @@ function addClickEventOnCells(DOMElement, numOfBombs) {
         const currentCell = DOMElement[i]
 
         // evento click per ogni cella
-        currentCell.addEventListener('click', function() {
+        currentCell.addEventListener('click', function () {
             if (gameOver) return
 
             if (bombe.includes(cellNumber)) {
