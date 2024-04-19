@@ -28,4 +28,5 @@ Il codice è suddiviso in diverse sezioni:
 ## Future implementazioni
 
 - Timer: un conto alla rovescia, allo scadere del quale il gioco termina
+- Effetti sonori: al click delle celle vuote e l'esplosione al click della bomba
 
